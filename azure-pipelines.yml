@@ -15,10 +15,10 @@ steps:
 - task: Gradle@3
   inputs:
     gradleWrapperFile: 'gradlew'
-    tasks: 'Sonar'
+    tasks: 'sonarqube'
     publishJUnitResults: false
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: true
     sqGradlePluginVersionChoice: 'specify'
-    sonarQubeGradlePluginVersion: '3.5.0.2730'
+    sonarQubeGradlePluginVersion: '3.3'
     spotBugsAnalysis: false

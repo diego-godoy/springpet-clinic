@@ -4,6 +4,22 @@ pool:
 
 steps:
 
-- script: |
-    echo Hola Mundo
-  displayName: 'Hola Mundo'
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonarcloud'
+    organization: 'diego-godoy'
+    projectKey: 'diego-godoy_springpet-clinic'
+    projectName: 'springpet-clinic'
+    scannerMode: 'Other'
+  displayName: 'SonarCloud Prepare'
+
+- task: Gradle@3
+  inputs:
+    gradleWrapperFile: 'gradlew'
+    tasks: 'SonarCube'
+    publishJUnitResults: false
+    javaHomeOption: 'JDKVersion'
+    sonarQubeRunAnalysis: true
+    sqGradlePluginVersionChoice: 'specify'
+    sonarQubeGradlePluginVersion: '3.3'
+    spotBugsAnalysis: false
